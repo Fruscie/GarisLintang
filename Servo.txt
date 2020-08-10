@@ -1,0 +1,2 @@
+servo naik 40-100 (40 kebawah)
+servo grip 0-100 (0mangap)
