@@ -5,25 +5,19 @@ import time
 def Gerak(kondisi):
 	if kondisi == "Merah":
 		print("Sukses Servo Merah")
-		cb = 0
-		cy = 0
-		cr = 0
 		print("DELAY MOTOR SERVO JALAN")
 		time.sleep(1)
 	elif kondisi == "Biru":
 		print("Sukses Servo Biru")
-		cb = 0
-		cy = 0
-		cr = 0
 		print("DELAY MOTOR SERVO JALAN")
 		time.sleep(1)
-	elif kondisi == "Kuning":
-		print("Sukses Servo Kuning")
-		cb = 0
-		cy = 0
-		cr = 0
+	elif kondisi == "Hijau":
+		print("Sukses Servo Hijau")
 		print("DELAY MOTOR SERVO JALAN")
 		time.sleep(1)
+	cb = 0
+	cg = 0
+	cr = 0
 
 def Kotakin(warna,img,WarnaKotak,label):
 	contours, hierarchy = cv2.findContours(warna, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
@@ -53,35 +47,41 @@ def main():
 
 		yellow_lower = np.array([22,60,200],np.uint8)
 		yellow_upper = np.array([60,255,255],np.uint8)
+		
+		green_lower=np.array([25,52,72],np.uint8)
+		green_upper=np.array([102, 255, 255],np.uint8)
 	
 		red= cv2.inRange(hsv, red_lower, red_upper)
 		blue= cv2.inRange(hsv,blue_lower,blue_upper)
 		yellow= cv2.inRange(hsv,yellow_lower,yellow_upper)
-	
+		green= cv2.inRange(hsv,green_lower,green_upper)
+		
 		cr= cv2.countNonZero(red)
 		cb= cv2.countNonZero(blue)
 		cy= cv2.countNonZero(yellow)
-		totalwarna=cb+cy+cr
+		cg= cv2.countNonZero(green)
+		
+		totalwarna=cb+cg+cr
 		
 		if totalwarna >= 1000:
-			if i > 7 :
+			if i > 10 :
 				Gerak(Warna)
 				i = 0
 			else:
-				if cr>cb and cr>cy:
+				if cr>cb and cr>cg:
 					Warna = "Merah"
 					WarnaKotak = (0,0,255)
 					Kotakin(red,img,WarnaKotak,"Warna Merah")
 
-				elif cb>cr and cb>cy:
+				elif cb>cr and cb>cg:
 					Warna = "Biru"
 					WarnaKotak = (255, 0,0)
 					Kotakin(blue,img,WarnaKotak,"Warna Biru")
 
-				elif cy>cr and cy>cb:
-					Warna = "Kuning"
-					WarnaKotak = (0, 255, 255)
-					Kotakin(yellow,img,WarnaKotak,"Warna Kuning")
+				elif cg>cr and cg>cb:
+					Warna = "Hijau"
+					WarnaKotak = (0, 255, 0)
+					Kotakin(green,img,WarnaKotak,"Warna Hijau")
 				i += 1
 		else:
 			print("Tidak Terdeteksi")
