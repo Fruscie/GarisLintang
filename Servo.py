@@ -18,7 +18,9 @@ def Capit(angle):
 	GPIO.output(servoPIN1, True)
 	p1.ChangeDutyCycle(duty)
 	time.sleep(2)
+	p1.start(0)   
 	GPIO.output(servoPIN1, False)
+	p1.ChangeDutyCycle(0) 
 
 
 def Angkat(angle):
@@ -26,6 +28,7 @@ def Angkat(angle):
 	GPIO.output(servoPIN2, True)
 	p2.ChangeDutyCycle(duty)
 	time.sleep(2)
+	p2.start(0)
 	GPIO.output(servoPIN2, False)
 
 	
@@ -35,15 +38,16 @@ def AwalServo():
          
 try:
   while True:
+      Capit(0)
 ##    AwalServo()
 ##    print('buka')
-    Capit(80)
-    Angkat(35)
-    Capit(160)
-    Angkat(80)
-    Capit(80)
-    Capit(160)
-    
+#     Capit(80)
+#     Angkat(35)
+#     Capit(160)
+#     Angkat(80)
+#     Capit(80)
+#     Capit(160)
+#     
 ##    print('tutup')
 ##    Capit(100)
 ##    print('naik')
@@ -53,7 +57,8 @@ try:
 ##    print('buka')
 ##    Capit(0)
 ##    AwalServo()
-    break
+#       p1.start(0)
+      break
 except KeyboardInterrupt:
   p1.stop()
   p2.stop()

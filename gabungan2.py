@@ -10,7 +10,7 @@ MKiri1 = 17
 MKiri2 = 27
 MKanan1 = 19
 MKanan2 = 26
-servoPIN1 = 21
+servoPIN1 = 4
 servoPIN2 = 20
 
 GPIO.setup(MKiri1, GPIO.OUT)
@@ -44,8 +44,9 @@ def Servo(kondisi, angle):
         ServoP = ServoGrip
     duty = angle / 18 + 2
     GPIO.output(servopin, True)
-    ServoP.ChangeDutyCycle(duty)
+    ServoP.ChangeDutyCycle(duty)#test
     time.sleep(2)
+    ServoP.start(0)
     GPIO.output(servopin, False)
   
 def AwalServo():
@@ -103,39 +104,41 @@ def Gerak(kondisi):
         Motor('mundur', 0.5)
 
     elif kondisi == "Merah":
-##        Motor('maju',0.8)
+        Motor('maju',0.8)
         print('Ambil Benda Merah')
-##        Servo('Capit',ServoBuka)
-##        Servo('Angkat',ServoTurun)
-##        AwalServo()
-##        Motor('mundur',0.5)
-##        Motor('kiri',0.8)
-##        time.sleep(1)
-##        print('Taruh Benda')
-##        Servo('Angkat',ServoTurun)
-##        Servo('Capit',ServoBuka)
-##        Servo('Angkat',ServoAngkat)
-##        AwalServo()
-##        Motor('kanan',0.8)
-##        time.sleep(0.5)
-##        Motor('mundur',0.6)
+        Servo('Capit',ServoBuka)
+        Servo('Angkat',ServoTurun)
+        AwalServo()
+        Motor('mundur',0.5)
+        Motor('kiri',0.8)
+        time.sleep(1)
+        print('Taruh Benda')
+        Servo('Angkat',ServoTurun)
+        Servo('Capit',ServoBuka)
+#         Servo('Angkat',ServoAngkat)
+#         AwalServo()
+        Servo('Capit',ServoCapit)
+        Motor('kanan',0.8)
+        time.sleep(0.5)
+        Motor('mundur',0.6)
 
     elif kondisi == "Hijau":
-##        Motor('maju',1)
+        Motor('maju',1)
         print('Ambil Benda Hijau')
-##        Servo('Capit',ServoBuka)
-##        Servo('Angkat',ServoTurun)
-##        AwalServo()
-##        Motor('mundur',0.5)
-##        Motor('kiri',0.8)
-##        time.sleep(1)
-##        print('Taruh Benda')
-##        Servo('Angkat',ServoTurun)
-##        Servo('Capit',ServoBuka)
-##        Servo('Angkat',ServoAngkat)
-##        AwalServo()
-##        Motor('kanan',0.7)
-##        Motor('mundur',0.6)
+        Servo('Capit',ServoBuka)
+        Servo('Angkat',ServoTurun)
+        AwalServo()
+        Motor('mundur',0.5)
+        Motor('kiri',0.8)
+        time.sleep(1)
+        print('Taruh Benda')
+        Servo('Angkat',ServoTurun)
+        Servo('Capit',ServoBuka)
+#         Servo('Angkat',ServoAngkat)
+#         AwalServo()
+        Servo('Capit',ServoCapit)
+        Motor('kanan',0.7)
+        Motor('mundur',0.6)
         
     print('awal')
     cb = 0
