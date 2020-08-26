@@ -1,8 +1,8 @@
 import RPi.GPIO as GPIO
 import time
 
-servoPIN1 = 20
-servoPIN2 = 21
+servoPIN1 = 21
+servoPIN2 = 20
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(servoPIN1, GPIO.OUT)
 GPIO.setup(servoPIN2, GPIO.OUT)
@@ -35,14 +35,24 @@ def AwalServo():
          
 try:
   while True:
-    AwalServo()
-    Capit(0)
-    Capit(100)
-    Angkat(100)
-    time.sleep(1)
-    Angkat(AwalAngkat)
-    Capit(0)
-    AwalServo()
+##    AwalServo()
+##    print('buka')
+    Capit(80)
+    Angkat(35)
+    Capit(160)
+    Angkat(80)
+    Capit(80)
+    Capit(160)
+    
+##    print('tutup')
+##    Capit(100)
+##    print('naik')
+##    Angkat(100)
+##    time.sleep(1)
+##    Angkat(AwalAngkat)
+##    print('buka')
+##    Capit(0)
+##    AwalServo()
     break
 except KeyboardInterrupt:
   p1.stop()
