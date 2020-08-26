@@ -10,7 +10,7 @@ MKiri1 = 17
 MKiri2 = 27
 MKanan1 = 19
 MKanan2 = 26
-servoPIN1 = 4
+servoPIN1 = 21
 servoPIN2 = 20
 
 GPIO.setup(MKiri1, GPIO.OUT)
@@ -85,7 +85,7 @@ def Motor(gerak,waktu):
 
    
 def Gerak(kondisi):
-    print(kondisi)
+#     print(kondisi)
     if kondisi == "Biru":
         Motor('maju', 1)
         print('Ambil Benda Biru')
