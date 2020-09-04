@@ -17,9 +17,17 @@ try:
   while True:
     print('Maju')
     p1=GPIO.PWM(MKiri1,100)
-    GPIO.output(MKiri2, GPIO.LOW)
-    p2=GPIO.PWM(MKanan2,100)
-    GPIO.output(MKanan1, GPIO.LOW)
+    p2=GPIO.PWM(MKiri2, 100)
+    p3=GPIO.PWM(MKanan1,100)
+    p4=GPIO.PWM(MKanan2, 100)
+    p2.start(30)
+    p3.start(30)
+    time.sleep(0.8)
+    p2.start(0)
+    p3.start(0)
+    p2.start(30)
+    p4.start(30)
+    time.sleep(0.8)
     #p1.start(40)#maju
     #p2.start(100)
     #p1.start(28)#mundur
@@ -32,6 +40,8 @@ try:
     #time.sleep(0.6)
     p1.start(0)
     p2.start(0)
+    p3.start(0)
+    p4.start(0)
     break
 except KeyboardInterrupt:
   p1.stop()

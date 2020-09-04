@@ -20,10 +20,10 @@ GPIO.setup(MKanan2, GPIO.OUT)
 GPIO.setup(servoPIN1, GPIO.OUT)
 GPIO.setup(servoPIN2, GPIO.OUT)
 
-ServoAngkat = 80
-ServoCapit = 160
-ServoBuka = 90
-ServoTurun =35
+ServoAngkat = 105
+ServoCapit = 100
+ServoBuka = 70
+ServoTurun = 57
 
 ServoArm = GPIO.PWM(servoPIN1, 50) # GPIO 20 for PWM with 20Hz
 ServoArm.start(0) # Initialization
@@ -46,7 +46,6 @@ def Servo(kondisi, angle):
     GPIO.output(servopin, True)
     ServoP.ChangeDutyCycle(duty)#test
     time.sleep(2)
-    ServoP.start(0)
     GPIO.output(servopin, False)
   
 def AwalServo():
@@ -87,58 +86,59 @@ def Motor(gerak,waktu):
 def Gerak(kondisi):
 #     print(kondisi)
     if kondisi == "Biru":
-        Motor('maju', 1)
+        print("Biru")
+        Motor('maju', 1.070)
         print('Ambil Benda Biru')
         Servo('Capit', ServoBuka)
         Servo('Angkat', ServoTurun)
         AwalServo()
-        Motor('mundur',0.5)
-        Motor('kiri', 0.7)
-        time.sleep(1)
+        Motor('mundur',0.2)
+        Motor('kanan', 1)
+        time.sleep(0.5)
         print('Taruh Benda')
         Servo('Angkat', ServoAngkat)
         Servo('Capit', ServoBuka)
-##        Servo('Angkat', ServoAngkat)
-        Servo('Capit', ServoCapit)
-        Motor('kanan', 0.7)
-        Motor('mundur', 0.5)
+        Servo('Angkat', 90)
+        AwalServo()
+        Motor('kiri', 0.8)
+        Motor('mundur', 1)
 
     elif kondisi == "Merah":
-        Motor('maju',0.8)
         print('Ambil Benda Merah')
-        Servo('Capit',ServoBuka)
-        Servo('Angkat',ServoTurun)
+        Motor('maju', 1.070)
+        print('Ambil Benda Biru')
+        Servo('Capit', ServoBuka)
+        Servo('Angkat', ServoTurun)
         AwalServo()
-        Motor('mundur',0.5)
-        Motor('kiri',0.8)
-        time.sleep(1)
-        print('Taruh Benda')
-        Servo('Angkat',ServoTurun)
-        Servo('Capit',ServoBuka)
-#         Servo('Angkat',ServoAngkat)
-#         AwalServo()
-        Servo('Capit',ServoCapit)
-        Motor('kanan',0.8)
+        Motor('mundur',0.4)
+        Motor('kanan', 1)
         time.sleep(0.5)
-        Motor('mundur',0.6)
+        print('Taruh Benda')
+        Servo('Angkat', ServoAngkat)
+        Servo('Capit', ServoBuka)
+        Servo('Angkat', 90)
+        AwalServo()
+        Motor('kiri', 0.8)
+        Motor('mundur', 1)
 
     elif kondisi == "Hijau":
-        Motor('maju',1)
         print('Ambil Benda Hijau')
-        Servo('Capit',ServoBuka)
-        Servo('Angkat',ServoTurun)
+        Motor('maju', 1.070)
+        print('Ambil Benda Biru')
+        Servo('Capit', ServoBuka)
+        Servo('Angkat', ServoTurun)
         AwalServo()
-        Motor('mundur',0.5)
-        Motor('kiri',0.8)
-        time.sleep(1)
+        Motor('mundur',0.3)
+        Motor('kanan', 1)
+        time.sleep(0.5)
         print('Taruh Benda')
-        Servo('Angkat',ServoTurun)
-        Servo('Capit',ServoBuka)
-#         Servo('Angkat',ServoAngkat)
-#         AwalServo()
-        Servo('Capit',ServoCapit)
-        Motor('kanan',0.7)
-        Motor('mundur',0.6)
+        Servo('Angkat', ServoAngkat)
+        Servo('Capit', ServoBuka)
+        Servo('Angkat', 90)
+        AwalServo()
+        Motor('kiri', 0.8)
+        Motor('mundur', 1)
+        
         
     print('awal')
     cb = 0
@@ -164,9 +164,9 @@ def main():
         _, img = cap.read()
         hsv = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
 
-        red_lower = np.array([136,87,111],np.uint8)
-        red_upper = np.array([180,255,255],np.uint8)
-
+        red_lower = np.array([0,120,70],np.uint8)
+        red_upper = np.array([10,255,255],np.uint8)
+        
         blue_lower = np.array([99,115,120],np.uint8)
         blue_upper = np.array([110,255,255],np.uint8)
 
